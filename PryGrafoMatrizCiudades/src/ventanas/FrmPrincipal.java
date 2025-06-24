@@ -142,7 +142,7 @@ public class FrmPrincipal extends javax.swing.JFrame
         // TODO add your handling code here:
         int j;
         txaResultado.setText("");
-
+        
         for (i = 0; i < vectorDeCiudades.getConta(); i=i+1)
             for (j = 0; j < vectorDeCiudades.getConta(); j=j+1)
                 if (matrizDePrecios.getElemento(i, j) != 0)
@@ -155,13 +155,18 @@ public class FrmPrincipal extends javax.swing.JFrame
         double precio;
         int fil, col;
         
+        
         fil = cmbOrigen.getSelectedIndex() - 1;             // posición en el Vector de la ciudad origen (fila)
         
         destino = cmbDestino.getSelectedItem().toString();
-        col = vectorDeCiudades.buscar(destino);             // posición en el Vector de la ciudad destino (columna)
+        col = vectorDeCiudades.buscar(destino); 
+        
         
         precio = Double.parseDouble(txtPrecio.getText());
         matrizDePrecios.setElemento(precio, fil, col);
+        
+        //precio = Double.parseDouble(txtPrecio.getText());
+        matrizDePrecios.setElemento(precio, col, fil);
 
         limpiar();
     }//GEN-LAST:event_btnGrabarActionPerformed
@@ -179,6 +184,8 @@ public class FrmPrincipal extends javax.swing.JFrame
         for (i = 0; i < vectorDeCiudades.getConta(); i=i+1)
             if (cmbOrigen.getSelectedIndex() != i + 1)
                 cmbDestino.addItem(vectorDeCiudades.getElemento(i));
+        
+        
     }//GEN-LAST:event_cmbOrigenActionPerformed
       
     public static void main(String args[]) {
